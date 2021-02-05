@@ -49,6 +49,8 @@
   body {
       background-color: #FCF5F4;
       display: grid;
+      margin-bottom: 300px;
+      font-size: 20px;
   }
   
   
