@@ -8,3 +8,6 @@ def health(request):
     
 def contact(request):
     return render(request, 'app/contact.html')
+
+def operation(request):
+    return render(request, 'app/operation.html')
