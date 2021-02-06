@@ -1,0 +1,13 @@
+{% load static %}
+<h1>Register Account</h1>
+<form method="POST" action="">
+	{% csrf_token %}
+	{% for field in form %}
+		{{field.label}}:
+		{{field}}<br>
+	{% endfor %}	
+		
+	<input type="submit" name="Create User">
+	
+	<br><br> Already have an account? <a class="active" href="#login" onclick="location.href='/login'">Login</a>
+</form>
