@@ -6,6 +6,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <body>
+		
+		<h1>Forum</h1>
+
+	</body>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DataFlair discussion forum</title>
@@ -19,10 +26,10 @@
 </head>
 <body>
         <h2 class="jumbotron">
-            Currently active topics: {{count}}
+            There are currently {{count}} active discussions.
             <form method="POST" action="{% url 'addInForum' %}">
                 {% csrf_token %}
-            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">New Discussion</button>
             </form>
         </h2>
             <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
@@ -52,7 +59,7 @@
                             {%endfor%}
                             <form method="POST" action="{% url 'addInDiscussion' %}">
                                 {% csrf_token %}
-                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Add more</button>
+                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Reply</button>
                             </form>
                         </div>
                 </div>

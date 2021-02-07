@@ -41,6 +41,10 @@ def loginPage(request):
     context = {}
     return render(request, 'app/login.html', context)
 
+def logout(request):
+    logout(request)
+    return redirect('home')
+
 ############################# Forum ########################################## 
 
 @login_required
@@ -63,7 +67,7 @@ def addInForum(request):
         form = CreateInForum(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('forumHome')
     context ={'form':form}
     return render(request,'addInForum.html',context)
 
@@ -74,7 +78,7 @@ def addInDiscussion(request):
         form = CreateInDiscussion(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('forumHome')
     context ={'form':form}
     return render(request,'addInDiscussion.html',context)
 
