@@ -3,7 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import *
 from django.contrib.auth import authenticate, login, logout
-from .forms import CreateUserForm
+from .forms import *
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'app/index.html')
@@ -39,3 +40,42 @@ def loginPage(request):
             return redirect('home')
     context = {}
     return render(request, 'app/login.html', context)
+
+############################# Forum ########################################## 
+
+@login_required
+def forumHome(request):
+    forums=forum.objects.all()
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions}
+    return render(request,'forumHome.html',context)
+
+@login_required
+def addInForum(request):
+    form = CreateInForum()
+    if request.method == 'POST':
+        form = CreateInForum(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context ={'form':form}
+    return render(request,'addInForum.html',context)
+
+@login_required
+def addInDiscussion(request):
+    form = CreateInDiscussion()
+    if request.method == 'POST':
+        form = CreateInDiscussion(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context ={'form':form}
+    return render(request,'addInDiscussion.html',context)
+
+    ########################## Forum End ########################################

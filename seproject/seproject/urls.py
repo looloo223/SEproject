@@ -15,12 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from app.views import index
-from app.views import health
-from app.views import contact
-from app.views import operation
-from app.views import register
-from app.views import loginPage
+
+from app.views import * 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +27,10 @@ urlpatterns = [
     path('register/', register),
     path('login/', loginPage),
     path('accounts/', include('django.contrib.auth.urls')),
+
+    ######################## Forum #################################
+    path('forumHome/',forumHome,name='forumHome'),
+    path('addInForum/',addInForum,name='addInForum'),
+    path('addInDiscussion/',addInDiscussion,name='addInDiscussion'),
+     ####################### Forum ################################
 ]
