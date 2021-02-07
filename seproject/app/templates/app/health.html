@@ -1,18 +1,11 @@
+{% extends "app/base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta HEALTH="utf-8">
-		<title>SEPROJECT</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
-		
-		<div class="topnav">
-		  <a class="active" href="#home" onclick="location.href='/'">Home</a>
-		  <a href="#news" onclick="location.href='location.com'">News</a>
-		  <a href="#contact" onclick="location.href='contact/'">Contact</a>
-		  <a href="#about" onclick="location.href='location.com'">About</a>
-		</div>
-	</head>
+
+	{% block content %}
+
+	
 	<body>
 	
 		<h1>Health</h1>
@@ -62,4 +55,7 @@
 		</div>
 	
 	</body>
+
+	{% endblock %}
+
 </html>

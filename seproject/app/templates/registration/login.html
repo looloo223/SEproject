@@ -1,3 +1,7 @@
+{% extends "app/base.html" %}
+
+{% block content%}
+
 <h2>Log In</h2>
 <form method="post">
   {% csrf_token %}
@@ -5,3 +9,5 @@
   <button type="submit">Log In</button>
   <br><br> Don't have an account yet? <a class="active" href="#register" onclick="location.href='/register'">Register</a>
 </form>
+
+{% endblock %}

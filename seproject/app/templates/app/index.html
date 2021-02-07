@@ -1,23 +1,14 @@
+{% extends "app/base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 
-	<head>
+	{% block content %}
 
-		<meta charset="utf-8">
-		<title>Crisis Management System</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
-
-	</head>
+	
 
 	<body>
-
-		<div class="topnav">
-		  <a class="active" href="#home" onclick="location.href='/'">Home</a>
-		  <a href="#news" onclick="location.href='location.com'">News</a>
-		  <a href="#contact" onclick="location.href='contact/'">Contact</a>
-		  <a href="#about" onclick="location.href='location.com'">About</a>
-		</div>
+		
 
 		<h1>Crisis Management System</h1>
 
@@ -56,5 +47,7 @@
 		</div>
 
 	</main>
+
+	{% endblock %}
 
 </html>

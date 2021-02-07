@@ -1,4 +1,8 @@
+{% extends "app/base.html" %}
 {% load static %}
+
+{% block content %}
+
 <h1>Register Account</h1>
 <form method="POST" action="">
 	{% csrf_token %}
@@ -11,3 +15,5 @@
 	
 	<br><br> Already have an account? <a class="active" href="#login" onclick="location.href='/login'">Login</a>
 </form>
+
+{% endblock %}
