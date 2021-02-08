@@ -25,8 +25,7 @@ def register(request):
         if form.is_valid():                                             # Validate the data from the form
             form.save()                                                 # Save new user to database
             user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)# Show successful login
-            return redirect('login')                                    # redirect user to login page
+            return redirect('/accounts/login')                                    # redirect user to login page
     context = {'form':form}
     return render(request, 'app/register.html', context)
 	

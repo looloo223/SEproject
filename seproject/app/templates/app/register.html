@@ -6,10 +6,7 @@
 <h1>Register Account</h1>
 <form method="POST" action="">
 	{% csrf_token %}
-	{% for field in form %}
-		{{field.label}}:
-		{{field}}<br>
-	{% endfor %}	
+	{{ form.as_p }}
 		
 	<input type="submit" name="Create User">
 	
