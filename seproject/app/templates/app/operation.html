@@ -11,18 +11,53 @@
 </head>
 <body>
    <h1>Operations for Different Parts of CSU</h1>
-   <a href="https://students.columbusstate.edu/campus-life.php">Campus Life</a>
-
-   <br><a href="https://academics.columbusstate.edu/calendars/">Calendars</a>
-
-   <br><a href="https://bursar.columbusstate.edu/fees.php">Budgets</a>
-
-   <br><a href="https://columbusstate.campusdish.com">Dining</a>
-
-   <br><a href="https://orientation.columbusstate.edu">Orientation</a>
-
-   <br><a href="https://campusrec.columbusstate.edu">Recreation Center</a>
 </body>
+
+<main>
+
+   <div class="row">
+   
+      <div class="column">
+         
+         <br><br><h2>Campus Life</h2>
+         <img src="{% static 'app/images/campus.jpg' %}">
+         <p>This is for general knowledge dealing with life on campus.</p>
+         <button onclick="location.href='campu/'" class="button button2">Campus Life</button>
+
+         <br><br><h2>Budgeting</h2>
+         <img src="{% static 'app/images/Budget.png' %}">
+         <p>This helps with managing finances by offering information dealing with the costs of attending CSU.</p>
+         <button onclick="location.href='budgets/'" class="button button2">Budgets</button>
+
+         <br><br><h2>Orientation</h2>
+         <img src="{% static 'app/images/ori.jpg' %}">
+         <p>This is for new potential students looking forward to attending CSU.</p>
+         <button onclick="location.href='orient/'" class="button button2">Orientation</button>
+
+      </div>
+
+      <div class="column">
+
+         <br><br><h2>Calendars</h2>
+         <img src="{% static 'app/images/calendar.jpg' %}">
+         <p>This will show when certain events will happen and when certain things become available during the specified semesters.</p>
+         <button onclick="location.href='calendar/'" class="button button2">Calendars</button>
+
+         <br><br><h2>Dining</h2>
+         <img src="{% static 'app/images/Dine.jpg' %}">
+         <p>This shows the locations, times, and menus of different dining services offered at CSU.</p>
+         <button onclick="location.href='dining/'" class="button button2">Dining</button>
+
+         <br><br><h2>Recreation Center</h2>
+         <img src="{% static 'app/images/recreation.jpg' %}">
+         <p>This shows the different activites and events that are available in the Recreation Center at CSU</p>
+         <button onclick="location.href='rec/'" class="button button2">Recreation Center</button>
+
+      </div>
+
+   </div>       
+
+</main>
 
 {% endblock %}
 
