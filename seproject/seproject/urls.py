@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from app.views import * 
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,12 @@ urlpatterns = [
     path('register/', register),
     path('login/', loginPage),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('operation/budgets/', RedirectView.as_view(url='https://bursar.columbusstate.edu/fees.php')),
+    path('operation/campu/', RedirectView.as_view(url='https://students.columbusstate.edu/campus-life.php')),
+    path('operation/orient/', RedirectView.as_view(url='https://orientation.columbusstate.edu')),
+    path('operation/calendar/', RedirectView.as_view(url='https://academics.columbusstate.edu/calendars/')),
+    path('operation/dining/', RedirectView.as_view(url='https://columbusstate.campusdish.com')),
+    path('operation/rec/', RedirectView.as_view(url='https://campusrec.columbusstate.edu')),
 
     ######################## Forum #################################
     path('forumHome/',forumHome,name='forumHome'),
