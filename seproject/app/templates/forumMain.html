@@ -1,0 +1,48 @@
+{% extends "app/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+	{% block content %}
+
+	
+
+	<body>
+		
+
+		<h1>Forum Main</h1>
+
+	</body>
+
+	<main>
+
+		<div class="row">
+
+			<div class="column">
+
+				<button onclick="location.href='forumHealth/'" class="button button1">
+					Health</button>
+				<button onclick="location.href='forumPolicies/'" class="button button1">
+					Policies</button>
+				<button onclick="location.href='forumOperations/'" class="button button1">
+					Operations</button>
+
+			</div>
+
+			<div class="column">
+				<button onclick="location.href='forumTechnologies/'" class="button button2">
+					Technologies</button>
+					<button onclick="location.href='forumGeneral'" class="button button2">
+					General</button>
+					<button onclick="location.href='forumSocial'" class="button button2">
+					Social</button>
+					
+			</div>
+
+		</div>
+
+	</main>
+
+	{% endblock %}
+
+</html>

@@ -26,7 +26,7 @@
 </head>
 <body>
         <h2 class="jumbotron">
-            There are currently {{count}} active discussions.
+            There are currently {{count}} active {{section}} discussions.
             <form method="POST" action="{% url 'addInForum' %}">
                 {% csrf_token %}
             <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">New Discussion</button>
@@ -46,6 +46,8 @@
                             </h5>
                             <hr>
                             <p> By: {{forum.name}}</p>
+                            <hr>
+                            <p>Section: {{forum.section}}</p>
                             <hr>     
                             <h4>Views from other users</h4>
                             {%for discuss in discussions%}

@@ -15,8 +15,6 @@ class CreateInForum(ModelForm):
         fields = "__all__"
 	
 		
-		
- 
 class CreateInDiscussion(ModelForm):
     class Meta:
         model= Discussion

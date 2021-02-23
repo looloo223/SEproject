@@ -36,8 +36,15 @@ urlpatterns = [
     path('operation/rec/', RedirectView.as_view(url='https://campusrec.columbusstate.edu')),
 
     ######################## Forum #################################
+    path('forumMain/',forumMain,name='forumMain'),
     path('forumHome/',forumHome,name='forumHome'),
     path('addInForum/',addInForum,name='addInForum'),
     path('addInDiscussion/',addInDiscussion,name='addInDiscussion'),
+    path('forumMain/forumHealth/',forumHealth,name='forumHealth'),
+    path('forumMain/forumPolicies/',forumPolicies,name='forumPolicies'),
+    path('forumMain/forumOperations/',forumOperations,name='forumOperations'),
+    path('forumMain/forumTechnologies/',forumTechnologies,name='forumTechnologies'),
+    path('forumMain/forumGeneral/',forumGeneral,name='forumGeneral'),
+    path('forumMain/forumSocial/',forumSocial,name='forumSocial'),
      ####################### Forum ################################
 ]

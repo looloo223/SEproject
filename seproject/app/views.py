@@ -47,8 +47,97 @@ def logout(request):
 ############################# Forum ########################################## 
 
 @login_required
+def forumMain(request):
+    return render(request, 'forumMain.html')
+
+@login_required
+def forumHealth(request):
+    forums=forum.objects.filter(section="Health")
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              'section':"Health"}
+    return render(request,'forumHome.html',context)
+
+@login_required
+def forumPolicies(request):
+    forums=forum.objects.filter(section="Policies")
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              'section':"Policies"}
+    return render(request,'forumHome.html',context)
+
+@login_required
+def forumOperations(request):
+    forums=forum.objects.filter(section="Operations")
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              'section':"Operations"}
+    return render(request,'forumHome.html',context)
+
+@login_required
+def forumTechnologies(request):
+    forums=forum.objects.filter(section="Technologies")
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              'section':"Technologies"}
+    return render(request,'forumHome.html',context)
+
+@login_required
+def forumGeneral(request):
+    forums=forum.objects.filter(section="General")
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              'section':"General"}
+    return render(request,'forumHome.html',context)
+
+@login_required
+def forumSocial(request):
+    forums=forum.objects.filter(section="Social")
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+ 
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              'section':"Social"}
+    return render(request,'forumHome.html',context)
+
+
+@login_required
 def forumHome(request):
-    forums=forum.objects.all()
+    forums=forum.objects.filter(section="Health")
     count=forums.count()
     discussions=[]
     for i in forums:
