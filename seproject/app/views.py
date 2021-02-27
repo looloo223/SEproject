@@ -18,6 +18,9 @@ def contact(request):
 def operation(request):
     return render(request, 'app/operation.html')
 
+def policies(request):
+    return render(request, 'app/policies.html')
+
 def register(request):
     form = UserCreationForm()                                           # Use CreateUserForm() for email entry as well
     if request.method == 'POST':
