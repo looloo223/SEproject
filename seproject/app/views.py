@@ -173,4 +173,44 @@ def addInDiscussion(request):
     context ={'form':form}
     return render(request,'addInDiscussion.html',context)
 
+@login_required
+def forumDiscussion(request):
+    if request.method=='GET':
+        forumId = request.GET.get('topic')
+        if not forumId:
+            return render(request, 'forumDiscussion.html')
+        else:
+            forums=forum.objects.filter(topic=forumId)
+            discussions=[]
+            discussions.append(forums[0].discussion_set.all())
+
+            form = CreateInDiscussion()
+
+            context={'forum' : forums[0],
+                    'discussions' : discussions,
+                    'form' : form
+                    }
+            return render(request, 'forumDiscussion.html', context)
+
+    if request.method == 'POST':
+        form = CreateInDiscussion(request.POST)
+        if form.is_valid():
+                    form.save()
+        return redirect('/forumMain/')
+        
+
+
+
+    #forums=forum.objects.filter(section="Health")
+    #count=forums.count()
+    ##discussions=[]
+    ##for i in forums:
+    ##    discussions.append(i.discussion_set.all())
+ 
+    #context={'forums':forums,
+    #          'count':count,
+    #          #'discussions':discussions,
+    #          'section':"Health"}
+    #return render(request,'forumDiscussion.html',context)
+
     ########################## Forum End ########################################

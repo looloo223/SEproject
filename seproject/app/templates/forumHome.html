@@ -9,7 +9,7 @@
 
     <body>
 		
-		<h1>Forum</h1>
+		<h1>{{section}} Forum</h1>
 
 	</body>
 
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
     <style>
         .box{
-            border: 4px solid black;
+            border: 2px solid black;
             margin: 0 auto;
         }
     </style>
@@ -39,17 +39,19 @@
             
                 <div class="card box container">
                     <br>
-                    <h5 class="card-title">
-                        <a href='{{forum.link}}'><h3>{{forum.topic}}</h3></a> 
-                        <div class="card-body container">
-                                <p>{{forum.description}}</p>
-                            </h5>
-                            <hr>
-                            <p> By: {{forum.name}}</p>
-                            <hr>
-                            <p>Section: {{forum.section}}</p>
-                            <hr>     
-                            <h4>Views from other users</h4>
+                    <h6 class="card-title">
+                        
+                        <a href='forumDiscussion/?topic={{forum.topic}}'><h4>{{forum.topic}}</h4></a> 
+                        <p> By: {{forum.name}}</p>
+                        <!--<div class="card-body container">
+                        
+                                <p>{{forum.description}}</p> -->
+                        </h6>
+                            
+                            
+                            <!--<p>Section: {{forum.section}}</p>-->
+                                
+                            <!--<h4>Views from other users</h4>
                             {%for discuss in discussions%}
                             {%for objs in discuss%}  
                             {% if objs.forum == forum %}
@@ -61,11 +63,11 @@
                             <form method="POST" action="{% url 'addInDiscussion' %}">
                                 {% csrf_token %}
                             <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Reply</button>
-                            </form>
+                            </form>-->
                         </div>
                 </div>
-            </div>
-            <br>
+                </div>
+            
             
             {%endfor%}
           

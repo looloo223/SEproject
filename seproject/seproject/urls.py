@@ -47,5 +47,6 @@ urlpatterns = [
     path('forumMain/forumTechnologies/',forumTechnologies,name='forumTechnologies'),
     path('forumMain/forumGeneral/',forumGeneral,name='forumGeneral'),
     path('forumMain/forumSocial/',forumSocial,name='forumSocial'),
+    path('forumMain/forumHealth/forumDiscussion/',forumDiscussion,name='forumDiscussion'),
      ####################### Forum ################################
 ]
