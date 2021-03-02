@@ -7,7 +7,7 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'app/index.html')
+    return render(request, 'app/base2.html')
 
 def health(request):
     return render(request, 'app/health.html')
