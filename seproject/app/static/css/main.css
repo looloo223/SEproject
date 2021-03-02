@@ -1,12 +1,15 @@
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #333;
-  overflow: hidden;}
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
 
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
-  color: #f2f2f2; 
+  color: #f2f2f2;
   text-align: center;
   padding: 10px 30px;
   text-decoration: none;
@@ -23,7 +26,7 @@ h1{
   text-align: center;
   font-family: serif;
   font-weight: bold;
-  text-transform: uppercase;}   
+  text-transform: uppercase;}
 h1:after{
   content:' ';
   display:block;
@@ -49,7 +52,7 @@ body {
   margin-left: auto;
   margin-right: auto;}
 .button1 {background-color: #4CAF50;} /* Green Button*/
-.button2 {background-color: #008CBA;} /* Blue Button*/ 
+.button2 {background-color: #008CBA;} /* Blue Button*/
 
 /* Settings for buttons in menu portlet */
 .homebutton{
