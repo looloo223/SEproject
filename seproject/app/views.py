@@ -11,7 +11,7 @@ def index(request):
 
 def health(request):
     return render(request, 'app/health.html')
-    
+
 def contact(request):
     return render(request, 'app/contact.html')
 
@@ -26,12 +26,13 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)                           # Send in the data of the form
         if form.is_valid():                                             # Validate the data from the form
-            form.save()                                                 # Save new user to database
-            user = form.cleaned_data.get('username')
-            return redirect('/accounts/login')                                    # redirect user to login page
+            user = form.save() #       used to be just form.save()                                          # Save new user to database
+            # old line user = form.cleaned_data.get('username')
+            login(request, user)   #logins in the user this was added 3/2/2021
+            return redirect('home')             # old string was "/accounts/login"                       # redirect user to login page
     context = {'form':form}
     return render(request, 'app/register.html', context)
-	
+
 def loginPage(request):
     if (request.method == 'POST'):
         username = request.POST.get('username')
@@ -47,7 +48,7 @@ def logout(request):
     logout(request)
     return redirect('home')
 
-############################# Forum ########################################## 
+############################# Forum ##########################################
 
 @login_required
 def forumMain(request):
@@ -60,7 +61,7 @@ def forumHealth(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -74,7 +75,7 @@ def forumPolicies(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -88,7 +89,7 @@ def forumOperations(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -102,7 +103,7 @@ def forumTechnologies(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -116,7 +117,7 @@ def forumGeneral(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -130,7 +131,7 @@ def forumSocial(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -145,7 +146,7 @@ def forumHome(request):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
- 
+
     context={'forums':forums,
               'count':count,
               'discussions':discussions}
@@ -197,7 +198,7 @@ def forumDiscussion(request):
         if form.is_valid():
                     form.save()
         return redirect('/forumMain/')
-        
+
 
 
 
@@ -206,7 +207,7 @@ def forumDiscussion(request):
     ##discussions=[]
     ##for i in forums:
     ##    discussions.append(i.discussion_set.all())
- 
+
     #context={'forums':forums,
     #          'count':count,
     #          #'discussions':discussions,
