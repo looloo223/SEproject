@@ -21,6 +21,9 @@ def operation(request):
 def policies(request):
     return render(request, 'app/policies.html')
 
+def technologies(request):
+    return render(request, 'app/technologies.html')
+
 def register(request):
     form = UserCreationForm()                                           # Use CreateUserForm() for email entry as well
     if request.method == 'POST':
