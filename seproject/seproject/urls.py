@@ -14,9 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
-from app.views import * 
+from app.views import *
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
@@ -47,6 +47,8 @@ urlpatterns = [
     path('forumMain/forumTechnologies/',forumTechnologies,name='forumTechnologies'),
     path('forumMain/forumGeneral/',forumGeneral,name='forumGeneral'),
     path('forumMain/forumSocial/',forumSocial,name='forumSocial'),
-    path('forumMain/forumHealth/forumDiscussion/',forumDiscussion,name='forumDiscussion'),
+    #path('forumMain/forumHealth/forumDiscussion/',forumDiscussion,name='forumDiscussion'),
+    re_path(r'^forumMain/\w+/forumDiscussion/$',forumDiscussion,name='forumDiscussion'),
+    #the above line fixed a bug that didn't allow the discussions in topics other than health to be viewed
      ####################### Forum ################################
 ]
