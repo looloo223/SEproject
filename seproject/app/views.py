@@ -185,6 +185,7 @@ def forumDiscussion(request):
             return render(request, 'forumDiscussion.html')
         else:
             forums=forum.objects.filter(topic=forumId)
+
             discussions=[]
             discussions.append(forums[0].discussion_set.all())
 
@@ -201,6 +202,8 @@ def forumDiscussion(request):
         if form.is_valid():
                     form.save()
         return redirect('/forumMain/')
+
+
 
 
 
