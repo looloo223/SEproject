@@ -2,7 +2,9 @@ from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
+from django.forms import widgets
 from django.forms.widgets import Textarea
+from django.utils.translation import gettext_lazy as _
 from .models import*
 
 # creates a new version of login form that includes email
@@ -26,7 +28,13 @@ class CreateInDiscussion(ModelForm):
 
     class Meta:
         model= Discussion
-        fields = ["name","forum","discuss"]
+        fields = ["discuss"]
+        widgets = {
+            'discuss' : Textarea(attrs={'cols': 40, 'rows': 10}),
+        }
+        labels = {
+            'discuss' : _('')
+        }
         
         
 
