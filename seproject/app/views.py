@@ -12,7 +12,7 @@ from .decorators import unauthenticated_user, allowed_users
 # @allowed_users(allowed_roles=['Staff']) 
 
 def index(request):
-    return render(request, 'app/base2.html')
+    return render(request, 'app/index.html')
 
 def health(request):
     return render(request, 'app/health.html')

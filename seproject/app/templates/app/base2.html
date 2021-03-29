@@ -30,9 +30,13 @@
                 
             <div class="homerow top"> <!-- User Portlet -->
                 <section>
-                <img src="{% static 'app/images/blank.png' %}" width="100" height="100">
-                <br>Name: John Smith
-                <br>Username: johnsmith
+                    {% if user.is_authenticated %}
+                        <img src="{% static 'app/images/blank.png' %}" width="100" height="100">
+                        <br>Name: {{ user.get_full_name }}
+                        <br>Username: {{ user.username }}
+                    {% else %}
+                        <button onclick="location.href='/accounts/login'" class="button button1">Login</button>
+                    {% endif %}
                 </section>
             </div>
 
@@ -50,8 +54,6 @@
                     Forum</button>
                 <button onclick="location.href='/symptom'" class="homebutton">
                     Sympton Screener</button>
-                <button onclick="location.href='/dashboard'" class="homebutton">
-                    Coronavirus Dashboard</button>
             </div>
         </div>
 
