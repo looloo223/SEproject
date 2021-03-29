@@ -9,7 +9,7 @@ from .decorators import unauthenticated_user, allowed_users
 
 # groups: Staff, Faculty, Health, Student, Technical
 # to restrict a page to a specific group of users use following line:
-# @allowed_users(allowed_roles=['Staff']) 
+# @allowed_users(allowed_roles=['Staff'])
 
 def index(request):
     return render(request, 'app/index.html')
@@ -167,7 +167,7 @@ def addInForum(request):
         form = CreateInForum(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('forumHome')
+            return redirect('forumMain') #the string used to be forumHome
     context ={'form':form}
     return render(request,'addInForum.html',context)
 
