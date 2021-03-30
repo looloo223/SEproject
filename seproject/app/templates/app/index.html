@@ -1,53 +1,25 @@
-{% extends "app/base.html" %}
+{% extends "app/base2.html" %}
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 
 	{% block content %}
 
-
-
-	<body>
-
-
-		<h1>Crisis Management System</h1>
-
-	</body>
-
-	<main>
-
-		<div class="row">
-
-			<div class="column">
-
-				<button onclick="location.href='/health'" class="button button1">
-					Health</button>
-				<button onclick="location.href='/policies'" class="button button1">
-					Policies</button>
-				<button onclick="location.href='/operation'" class="button button1">
-					Operations</button>
-				<button onclick="location.href='/technologies'" class="button button1">
-					Technologies</button>
-				<button onclick="location.href='/forumMain'" class="button button1">
-					Forum</button>
-
-			</div>
-
-			<div class="column">
-				<button onclick="location.href='https://covid-hub.gio.georgia.gov/app/GISCorps::covid-19-testing-in-the-united-states'" class="button button2">
-					Coronavirus Dashboard</button>
-					<button onclick="location.href='location.com'" class="button button2">
-					Daily Symtom Screener</button>
-					<button onclick="location.href='contact/'" class="button button2">
-					Contact Us</button>
-					<button onclick="location.href='location.com'" class="button button2">
-					FAQ</button>
-			</div>
-
-		</div>
-
-	</main>
-
+<body>
+	<h1>Covid-19 Dashboard</h1>
+	<iframe src="https://ourworldindata.org/explorers/coronavirus-data-explorer?zoomToSelection=true&hideControls=true&Metric=Confirmed+cases&Interval=Cumulative&Relative+to+Population=false&Align+outbreaks=false&country=~USA" height="500" width="1000" title="Iframe Example"></iframe>
+	<iframe src="https://ourworldindata.org/grapher/us-covid-share-fully-vaccinated?time=latest" height="500" width="1000" title="Iframe Example"></iframe>
+	
+	<div class="homecolumn left"style="width: 50%; background-color: white;"> 
+		<p style="color:red; font-size:160%;">Feeling unwell? Use the symptom screener to determine if you should take a COVID test.</p>
+	</div>
+	
+	<div class="homecolumn right" style="width: 50%">
+		<button onclick="location.href='/screener'" class="button button2">Symptom Screener</button>
+	</div>
+	
+</body>
 	{% endblock %}
 
 </html>

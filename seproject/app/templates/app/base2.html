@@ -17,7 +17,6 @@
         <div class="topnav" > <!-- Top Navigation menu: Home, News, Contact, About, and Login/Logout -->
             
             <a class="active" href="#home" onclick="location.href='/'">Home</a>
-            <a href="#news" onclick="location.href='location.com'">News</a>
             <a href="#contact" onclick="location.href='/contact'">Contact</a>
             <a href="#about" onclick="location.href='location.com'">About</a>
             {% if request.user.is_authenticated %}
@@ -33,9 +32,13 @@
                                 
             <div class="homerow top" > <!-- User Portlet -->
                 <section>
-                <img src="{% static 'app/images/blank.png' %}" width="100" height="100">
-                <br>Name: John Smith
-                <br>Username: johnsmith
+                    {% if user.is_authenticated %}
+                        <img src="{% static 'app/images/blank.png' %}" width="100" height="100">
+                        <br>Name: {{ user.get_full_name }}
+                        <br>Username: {{ user.username }}
+                    {% else %}
+                        <button onclick="location.href='/accounts/login'" class="button button1">Login</button>
+                    {% endif %}
                 </section>
             </div>
 
@@ -51,11 +54,15 @@
                     Technologies</button>
                 <button onclick="location.href='/forumMain'" class="homebutton">
                     Forum</button>
-                <button onclick="location.href='/symptom'" class="homebutton">
+                <button onclick="location.href='/screener'" class="homebutton">
                     Sympton Screener</button>
+<<<<<<< HEAD
                 <button onclick="location.href='/dashboard'" class="homebutton">
                     Coronavirus Dashboard</button>
             </div>            
+=======
+            </div>
+>>>>>>> e2026aa95ef2a5296d6e8463e30923871721caeb
         </div>
 
         <div class="homecolumn right"> <!-- Page Main Content Portlet -->

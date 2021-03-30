@@ -36,6 +36,7 @@ urlpatterns = [
     path('operation/calendar/', RedirectView.as_view(url='https://academics.columbusstate.edu/calendars/')),
     path('operation/dining/', RedirectView.as_view(url='https://columbusstate.campusdish.com')),
     path('operation/rec/', RedirectView.as_view(url='https://campusrec.columbusstate.edu')),
+    path('screener/', screener),
 
     ######################## Forum #################################
     path('forumMain/',forumMain,name='forumMain'),

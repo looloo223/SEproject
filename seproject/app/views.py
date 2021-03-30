@@ -5,9 +5,14 @@ from .models import *
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user, allowed_users
+
+# groups: Staff, Faculty, Health, Student, Technical
+# to restrict a page to a specific group of users use following line:
+# @allowed_users(allowed_roles=['Staff'])
 
 def index(request):
-    return render(request, 'app/base2.html')
+    return render(request, 'app/index.html')
 
 def health(request):
     return render(request, 'app/health.html')
@@ -23,6 +28,9 @@ def policies(request):
 
 def technologies(request):
     return render(request, 'app/technologies.html')
+
+def screener(request):
+    return render(request, 'app/screener.html')
 
 def register(request):
     form = UserCreationForm()                                           # Use CreateUserForm() for email entry as well
@@ -162,7 +170,7 @@ def addInForum(request):
         form = CreateInForum(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('forumHome')
+            return redirect('forumMain') #the string used to be forumHome
     context ={'form':form}
     return render(request,'addInForum.html',context)
 
