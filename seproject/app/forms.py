@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import widgets
+from django.forms.models import inlineformset_factory
 from django.forms.widgets import Textarea
 from django.utils.translation import gettext_lazy as _
 from .models import*
@@ -23,8 +24,7 @@ class CreateInForum(ModelForm):
 	
 		
 class CreateInDiscussion(ModelForm):
-    #name = 'bob'
-    #forum = forum.topic
+    
 
     class Meta:
         model= Discussion
@@ -35,6 +35,10 @@ class CreateInDiscussion(ModelForm):
         labels = {
             'discuss' : _('')
         }
-        
+
+DiscussionFormset = inlineformset_factory(forum, Discussion, fields=('discuss',))
+
+class replyForm(forms.Form):
+    reply = forms.CharField(label="Reply", max_length=1000)
         
 

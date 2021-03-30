@@ -20,21 +20,21 @@
 
 			<div class="column">
 
-				<button onclick="location.href='forumHealth/'" class="button button1">
+				<button onclick="location.href='{% url 'forumView' forumName='Health' %}'" class="button button1">
 					Health</button>
-				<button onclick="location.href='forumPolicies/'" class="button button1">
+				<button onclick="location.href='{% url 'forumView' forumName='Policies' %}'" class="button button1">
 					Policies</button>
-				<button onclick="location.href='forumOperations/'" class="button button1">
+				<button onclick="location.href='{% url 'forumView' forumName='Operations' %}'" class="button button1">
 					Operations</button>
 
 			</div>
 
 			<div class="column">
-				<button onclick="location.href='forumTechnologies/'" class="button button2">
+				<button onclick="location.href='{% url 'forumView' forumName='Technologies' %}'" class="button button2">
 					Technologies</button>
-					<button onclick="location.href='forumGeneral'" class="button button2">
+					<button onclick="location.href='{% url 'forumView' forumName='General' %}'" class="button button2">
 					General</button>
-					<button onclick="location.href='forumSocial'" class="button button2">
+					<button onclick="location.href='{% url 'forumView' forumName='Social' %}'" class="button button2">
 					Social</button>
 					
 			</div>

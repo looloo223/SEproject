@@ -41,7 +41,7 @@
                     <br>
                     <h6 class="card-title">
                         
-                        <a href='forumDiscussion/?topic={{forum.topic}}'><h4>{{forum.topic}}</h4></a> 
+                        <a href='{% url 'forumDiscussion' forumName=forum.section forumTopic=forum.topic %}'><h4>{{forum.topic}}</h4></a> 
                         <p> By: {{forum.name}}</p>
                         <!--<div class="card-body container">
                         

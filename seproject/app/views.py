@@ -1,3 +1,4 @@
+from django.forms.models import inlineformset_factory
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 
@@ -66,8 +67,8 @@ def forumMain(request):
     return render(request, 'forumMain.html')
 
 @login_required
-def forumHealth(request):
-    forums=forum.objects.filter(section="Health")
+def forumView(request, forumName):
+    forums=forum.objects.filter(section=forumName)
     count=forums.count()
     discussions=[]
     for i in forums:
@@ -78,77 +79,6 @@ def forumHealth(request):
               'discussions':discussions,
               'section':"Health"}
     return render(request,'forumHome.html',context)
-
-@login_required
-def forumPolicies(request):
-    forums=forum.objects.filter(section="Policies")
-    count=forums.count()
-    discussions=[]
-    for i in forums:
-        discussions.append(i.discussion_set.all())
-
-    context={'forums':forums,
-              'count':count,
-              'discussions':discussions,
-              'section':"Policies"}
-    return render(request,'forumHome.html',context)
-
-@login_required
-def forumOperations(request):
-    forums=forum.objects.filter(section="Operations")
-    count=forums.count()
-    discussions=[]
-    for i in forums:
-        discussions.append(i.discussion_set.all())
-
-    context={'forums':forums,
-              'count':count,
-              'discussions':discussions,
-              'section':"Operations"}
-    return render(request,'forumHome.html',context)
-
-@login_required
-def forumTechnologies(request):
-    forums=forum.objects.filter(section="Technologies")
-    count=forums.count()
-    discussions=[]
-    for i in forums:
-        discussions.append(i.discussion_set.all())
-
-    context={'forums':forums,
-              'count':count,
-              'discussions':discussions,
-              'section':"Technologies"}
-    return render(request,'forumHome.html',context)
-
-@login_required
-def forumGeneral(request):
-    forums=forum.objects.filter(section="General")
-    count=forums.count()
-    discussions=[]
-    for i in forums:
-        discussions.append(i.discussion_set.all())
-
-    context={'forums':forums,
-              'count':count,
-              'discussions':discussions,
-              'section':"General"}
-    return render(request,'forumHome.html',context)
-
-@login_required
-def forumSocial(request):
-    forums=forum.objects.filter(section="Social")
-    count=forums.count()
-    discussions=[]
-    for i in forums:
-        discussions.append(i.discussion_set.all())
-
-    context={'forums':forums,
-              'count':count,
-              'discussions':discussions,
-              'section':"Social"}
-    return render(request,'forumHome.html',context)
-
 
 @login_required
 def forumHome(request):
@@ -187,30 +117,35 @@ def addInDiscussion(request):
     return render(request,'addInDiscussion.html',context)
 
 @login_required
-def forumDiscussion(request):
-    if request.method=='GET':
-        forumId = request.GET.get('topic')
-        if not forumId:
-            return render(request, 'forumDiscussion.html')
-        else:
-            forums=forum.objects.filter(topic=forumId)
-
-            discussions=[]
-            discussions.append(forums[0].discussion_set.all())
-
-            form = CreateInDiscussion()
-
-            context={'forum' : forums[0],
-                    'discussions' : discussions,
-                    'form' : form
-                    }
-            return render(request, 'forumDiscussion.html', context)
-
+def forumDiscussion(request, forumName, forumTopic):
+    myForum=forum.objects.get(section=forumName, topic=forumTopic)
     if request.method == 'POST':
         form = CreateInDiscussion(request.POST)
         if form.is_valid():
-                    form.save()
+            form.forum=myForum
+            model=form.save(commit=False)
+            model.name=auth.get_user(request).username
+            model.forum=myForum
+            model.save()
         return redirect('/forumMain/')
+
+    
+
+
+    discussions=[]
+    discussions.append(myForum.discussion_set.all())
+
+    form = CreateInDiscussion()
+
+    context={'forum' : myForum,
+            'discussions' : discussions,
+            'form' : form,
+            'forumName' : forumName,
+            'forumTopic' : forumTopic
+            }
+    return render(request, 'forumDiscussion.html', context)
+
+    
 
 
 
