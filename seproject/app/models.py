@@ -18,12 +18,13 @@ class forum(models.Model):
         return str(self.topic)
 
 class Discussion(models.Model):
-    forum = models.ForeignKey(forum,blank=True,on_delete=models.CASCADE)
+    forum = models.ForeignKey(forum,blank=True,default="General",on_delete=models.CASCADE)
     discuss = models.CharField(max_length=1000)
     name=models.CharField(max_length=200,default="anonymous" )
  
     def __str__(self):
         return str(self.forum)
+        
 
 class Likes(models.Model):
     forum = models.ForeignKey(forum,blank=True,on_delete=models.CASCADE)

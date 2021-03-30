@@ -172,6 +172,7 @@ def addInDiscussion(request):
     if request.method == 'POST':
         form = CreateInDiscussion(request.POST)
         if form.is_valid():
+            
             form.save()
             return redirect('forumHome')
     context ={'form':form}
