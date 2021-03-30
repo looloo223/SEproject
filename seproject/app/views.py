@@ -77,7 +77,7 @@ def forumView(request, forumName):
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
-              'section':"Health"}
+              'section':forumName}
     return render(request,'forumHome.html',context)
 
 @login_required
@@ -128,9 +128,6 @@ def forumDiscussion(request, forumName, forumTopic):
             model.forum=myForum
             model.save()
         return redirect('/forumMain/')
-
-    
-
 
     discussions=[]
     discussions.append(myForum.discussion_set.all())

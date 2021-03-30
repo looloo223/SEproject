@@ -42,12 +42,10 @@ urlpatterns = [
     ######################## Forum #################################
     path('forumMain/',forumMain,name='forumMain'),
     path('forumHome/',forumHome,name='forumHome'),
-    path('addInForum/',addInForum,name='addInForum'),
+    #path('addInForum/',addInForum,name='addInForum'),
     path('addInDiscussion/',addInDiscussion,name='addInDiscussion'),
     path('forumMain/<forumName>/',forumView,name='forumView'),
-    path('forumMain/<forumName>/<forumTopic>/', forumDiscussion, name='forumDiscussion')
-    #path('forumMain/forumHealth/forumDiscussion/',forumDiscussion,name='forumDiscussion'),
-    #re_path(r'^forumMain/\w+/forumDiscussion/$',forumDiscussion,name='forumDiscussion'),
-    #the above line fixed a bug that didn't allow the discussions in topics other than health to be viewed
+    path('forumMain/<forumName>/<forumTopic>/', forumDiscussion, name='forumDiscussion'),
+    path('forumMain/<forumName>/addInForum/',addInForum,name='addInForum'),
      ####################### Forum ################################
 ]
