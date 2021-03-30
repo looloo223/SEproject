@@ -90,31 +90,24 @@ def forumHome(request):
 
     context={'forums':forums,
               'count':count,
-              'discussions':discussions}
+              'discussions':discussions,
+              }
     return render(request,'forumHome.html',context)
 
 @login_required
-def addInForum(request):
+def addInForum(request, forumName):
     form = CreateInForum()
     if request.method == 'POST':
         form = CreateInForum(request.POST)
         if form.is_valid():
-            form.save()
+            model=form.save(commit=False)
+            model.name=auth.get_user(request).username
+            model.section=forumName
+            model.save()
             return redirect('forumMain') #the string used to be forumHome
-    context ={'form':form}
+    context ={'form':form,
+                'forumName' : forumName}
     return render(request,'addInForum.html',context)
-
-@login_required
-def addInDiscussion(request):
-    form = CreateInDiscussion()
-    if request.method == 'POST':
-        form = CreateInDiscussion(request.POST)
-        if form.is_valid():
-            
-            form.save()
-            return redirect('forumHome')
-    context ={'form':form}
-    return render(request,'addInDiscussion.html',context)
 
 @login_required
 def forumDiscussion(request, forumName, forumTopic):
@@ -141,6 +134,18 @@ def forumDiscussion(request, forumName, forumTopic):
             'forumTopic' : forumTopic
             }
     return render(request, 'forumDiscussion.html', context)
+
+@login_required
+def addInDiscussion(request):
+    form = CreateInDiscussion()
+    if request.method == 'POST':
+        form = CreateInDiscussion(request.POST)
+        if form.is_valid():
+            
+            form.save()
+            return redirect('forumHome')
+    context ={'form':form}
+    return render(request,'addInDiscussion.html',context)
 
     
 

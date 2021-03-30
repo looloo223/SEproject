@@ -20,12 +20,17 @@ class CreateInForum(ModelForm):
 
     class Meta:
         model= forum
-        fields = "__all__"
+        fields = ["topic", "description"]
+        widgets = {
+            'description' : Textarea(attrs={'cols': 40, 'rows': 10}),
+        }
+        labels = {
+            'topic' : _('Topic'),
+            'description' : _('Description')
+        }
 	
 		
 class CreateInDiscussion(ModelForm):
-    
-
     class Meta:
         model= Discussion
         fields = ["discuss"]
@@ -38,7 +43,6 @@ class CreateInDiscussion(ModelForm):
 
 DiscussionFormset = inlineformset_factory(forum, Discussion, fields=('discuss',))
 
-class replyForm(forms.Form):
-    reply = forms.CharField(label="Reply", max_length=1000)
+
         
 

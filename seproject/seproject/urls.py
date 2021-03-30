@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 
 from app.views import *
 from django.views.generic.base import RedirectView
@@ -45,7 +45,8 @@ urlpatterns = [
     #path('addInForum/',addInForum,name='addInForum'),
     path('addInDiscussion/',addInDiscussion,name='addInDiscussion'),
     path('forumMain/<forumName>/',forumView,name='forumView'),
-    path('forumMain/<forumName>/<forumTopic>/', forumDiscussion, name='forumDiscussion'),
     path('forumMain/<forumName>/addInForum/',addInForum,name='addInForum'),
+    path('forumMain/<forumName>/<forumTopic>/', forumDiscussion, name='forumDiscussion'),
+    
      ####################### Forum ################################
 ]
