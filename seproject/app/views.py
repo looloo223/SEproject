@@ -29,6 +29,9 @@ def policies(request):
 def technologies(request):
     return render(request, 'app/technologies.html')
 
+def screener(request):
+    return render(request, 'app/screener.html')
+
 def register(request):
     form = UserCreationForm()                                           # Use CreateUserForm() for email entry as well
     if request.method == 'POST':
