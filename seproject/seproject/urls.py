@@ -47,6 +47,7 @@ urlpatterns = [
     path('forumMain/<forumName>/',forumView,name='forumView'),
     path('forumMain/<forumName>/addInForum/',addInForum,name='addInForum'),
     path('forumMain/<forumName>/<forumTopic>/', forumDiscussion, name='forumDiscussion'),
+    path('like/<forumTopic>', LikeView, name='like_post'),
     
      ####################### Forum ################################
 ]

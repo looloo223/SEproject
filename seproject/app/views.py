@@ -1,7 +1,8 @@
 from django.forms.models import inlineformset_factory
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
-
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
@@ -77,7 +78,8 @@ def forumView(request, forumName):
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
-              'section':forumName}
+              'section':forumName
+              }
     return render(request,'forumHome.html',context)
 
 @login_required
@@ -126,12 +128,20 @@ def forumDiscussion(request, forumName, forumTopic):
     discussions.append(myForum.discussion_set.all())
 
     form = CreateInDiscussion()
+    totalLikes = myForum.totalLikes()
+
+    liked = False
+    if myForum.forumLikes.filter(id=request.user.id).exists():
+        liked = True
+
 
     context={'forum' : myForum,
             'discussions' : discussions,
             'form' : form,
             'forumName' : forumName,
-            'forumTopic' : forumTopic
+            'forumTopic' : forumTopic,
+            'totalLikes' : totalLikes,
+            'liked' : liked,
             }
     return render(request, 'forumDiscussion.html', context)
 
@@ -147,23 +157,18 @@ def addInDiscussion(request):
     context ={'form':form}
     return render(request,'addInDiscussion.html',context)
 
-    
+@login_required
+def LikeView(request, forumTopic):
+    post=get_object_or_404(forum, topic= request.POST.get('post_id'))
+    liked = False
+    if post.forumLikes.filter(id=request.user.id).exists():
+        post.forumLikes.remove(request.user)
+        liked = False
+    else:
+        post.forumLikes.add(request.user)
+        liked = True
 
+    return HttpResponseRedirect(reverse('forumDiscussion', args=[post.section, str(forumTopic)]))
 
-
-
-
-
-    #forums=forum.objects.filter(section="Health")
-    #count=forums.count()
-    ##discussions=[]
-    ##for i in forums:
-    ##    discussions.append(i.discussion_set.all())
-
-    #context={'forums':forums,
-    #          'count':count,
-    #          #'discussions':discussions,
-    #          'section':"Health"}
-    #return render(request,'forumDiscussion.html',context)
 
     ########################## Forum End ########################################

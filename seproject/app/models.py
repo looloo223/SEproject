@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 
@@ -13,9 +14,13 @@ class forum(models.Model):
     date_created=models.DateTimeField(auto_now_add=True,null=True)
     likeCount = models.IntegerField(default=0)
     dislikeCount = models.IntegerField(default=0)
+    forumLikes = models.ManyToManyField(User, related_name='forum')
     
     def __str__(self):
         return str(self.topic)
+
+    def totalLikes(self):
+        return self.forumLikes.count()
 
 class Discussion(models.Model):
     forum = models.ForeignKey(forum,blank=True,on_delete=models.CASCADE)
@@ -25,13 +30,5 @@ class Discussion(models.Model):
     def __str__(self):
         return str(self.forum)
         
-
-class Likes(models.Model):
-    forum = models.ForeignKey(forum,blank=True,on_delete=models.CASCADE)
-    user = models.CharField(max_length=300, unique=True)
-
-class Dislikes(models.Model):
-    forum = models.ForeignKey(forum,blank=True,on_delete=models.CASCADE)
-    user= models.CharField(max_length=300, unique=True)
 
 ############################ Forum #################################
