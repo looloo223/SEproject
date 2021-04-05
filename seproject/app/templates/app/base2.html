@@ -35,7 +35,7 @@
                     {% if user.is_authenticated %}
                         <img src="{% static 'app/images/blank.png' %}" width="100" height="100">
                         <br>Name: {{ user.get_full_name }}
-                        <br>Username: {{ user.username }}
+                        <br>Username: <a href="/userDiscussions/">{{ user.username }}</a>
                     {% else %}
                         <button onclick="location.href='/accounts/login'" class="button button1">Login</button>
                     {% endif %}

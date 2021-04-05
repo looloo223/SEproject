@@ -134,7 +134,6 @@ def forumDiscussion(request, forumName, forumTopic):
     if myForum.forumLikes.filter(id=request.user.id).exists():
         liked = True
 
-
     context={'forum' : myForum,
             'discussions' : discussions,
             'form' : form,
@@ -170,5 +169,19 @@ def LikeView(request, forumTopic):
 
     return HttpResponseRedirect(reverse('forumDiscussion', args=[post.section, str(forumTopic)]))
 
+@login_required
+def userDiscussions(request):
+    
 
+    forums=forum.objects.filter(name=request.user)
+    count=forums.count()
+    discussions=[]
+    for i in forums:
+        discussions.append(i.discussion_set.all())
+
+    context={'forums':forums,
+              'count':count,
+              'discussions':discussions,
+              }
+    return render(request, 'userDiscussions.html', context)
     ########################## Forum End ########################################
