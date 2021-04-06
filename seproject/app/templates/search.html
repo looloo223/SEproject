@@ -9,7 +9,7 @@
 
     <body>
 		
-		<h1>{{section}} Forum</h1>
+		<h1>Search Results</h1>
 
 	</body>
 
@@ -26,28 +26,26 @@
 </head>
 <body>
         <h2 class="jumbotron">
-            There are currently {{count}} active {{section}} discussions.
-            <div>
-            <button onclick="location.href='{{request.path}}addInForum/'" class="btn btn-success">New Discussion</button>
-            </div>
+            There are currently {{count}} active discussions containing {{searchTerm}}.
+            
         </h2>
             
             <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
             
             
-            {% for forum in forums %}
+            {%for discussion in discussions %}
             
                 <div class="card box container">
                     <br>
                     <h6 class="card-title">
                         
-                        <a href='{% url 'forumDiscussion' forumName=forum.section forumTopic=forum.topic %}'><h4>{{forum.topic}}</h4></a> 
+                        <a href='{% url 'forumDiscussion' forumName=discussion.section forumTopic=discussion.topic %}'><h4>{{discussion.topic}}</h4></a> 
                         <p>
-                            Created: {{forum.date_created}}
+                            Created: {{discussion.date_created}}
                             <br>
-                            By: {{forum.name}}
+                            By: {{discussion.name}}
                             <br>
-                            Likes: {{forum.totalLikes}}
+                            Likes: {{discussion.totalLikes}}
                         </p>
                         
                         </h6>

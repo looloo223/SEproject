@@ -9,12 +9,21 @@
 
 	<body>
 		
+		<form action="" method="POST" style="text-align: center;">
+			{% csrf_token %}
+			{{form}}
+			<input type="submit" class="btn btn-success" value="submit" >
+		</form>
 
-		<h1>Forum Main</h1>
+		<h1>Forum Main
+			
+		</h1>
+		
 
 	</body>
 
 	<main>
+		
 
 		<div class="row">
 
@@ -38,8 +47,11 @@
 					Social</button>
 					
 			</div>
-
+			
+				
 		</div>
+		
+	
 
 	</main>
 

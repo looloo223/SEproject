@@ -65,7 +65,39 @@ def logout(request):
 
 @login_required
 def forumMain(request):
-    return render(request, 'forumMain.html')
+    form = SearchForm()
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+
+        if form.is_valid():
+
+
+            
+            searchTerm = form.cleaned_data['search']
+            forums = forum.objects.all()
+            discussions=[]
+            likes=[]
+            count = 0
+            
+            for i in forums:
+                
+                
+                
+                if contains(i.topic, searchTerm):
+                    discussions.append(i)
+                    likes.append(i.totalLikes)
+                    count += 1
+            context={'forums':forums,
+                'count':count,
+                'discussions':discussions,
+                'likes': likes,
+                'searchTerm':searchTerm
+                }
+            return render(request, 'search.html', context)
+    context = {
+        'form':form
+    }
+    return render(request, 'forumMain.html', context)
 
 @login_required
 def forumView(request, forumName):
@@ -74,11 +106,11 @@ def forumView(request, forumName):
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
-
+    form = SearchForm()
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
-              'section':forumName
+              'section':forumName,
               }
     return render(request,'forumHome.html',context)
 
@@ -87,12 +119,15 @@ def forumHome(request):
     forums=forum.objects.filter(section="Health")
     count=forums.count()
     discussions=[]
+    discussionIndex = 0
     for i in forums:
         discussions.append(i.discussion_set.all())
+        discussionIndex += 1
 
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
+              'discussionIndex': discussionIndex,
               }
     return render(request,'forumHome.html',context)
 
@@ -126,6 +161,7 @@ def forumDiscussion(request, forumName, forumTopic):
 
     discussions=[]
     discussions.append(myForum.discussion_set.all())
+    
 
     form = CreateInDiscussion()
     totalLikes = myForum.totalLikes()
@@ -172,16 +208,43 @@ def LikeView(request, forumTopic):
 @login_required
 def userDiscussions(request):
     
-
     forums=forum.objects.filter(name=request.user)
     count=forums.count()
     discussions=[]
+    likes=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
+        likes.append(i.totalLikes)
 
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
+              'likes': likes
               }
     return render(request, 'userDiscussions.html', context)
+
+@login_required
+def searchView(request):
+    
+
+    return render(request, 'search.html')
     ########################## Forum End ########################################
+
+def contains(string, substring):
+    num = 0
+    match = False
+    string = string.lower()
+    substring = substring.lower()
+
+    for letter in string:
+        if letter == substring[num]:
+            num += 1
+        if num == len(substring):
+            match = True
+            break
+    return match
+
+
+
+
+

@@ -43,6 +43,8 @@ class CreateInDiscussion(ModelForm):
 
 DiscussionFormset = inlineformset_factory(forum, Discussion, fields=('discuss',))
 
+class SearchForm(forms.Form):
+    search = forms.CharField(max_length=32)
 
         
 
