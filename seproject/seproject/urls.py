@@ -28,6 +28,7 @@ urlpatterns = [
     path('operation/', operation, name='operation'),
     path('policies/', policies),
     path('technologies/', technologies),
+    path('faq/', faq),
     path('register/', register),
     path('login/', loginPage),
     path('accounts/', include('django.contrib.auth.urls')),
