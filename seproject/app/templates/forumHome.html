@@ -31,6 +31,17 @@
             <button onclick="location.href='{{request.path}}addInForum/'" class="btn btn-success">New Discussion</button>
             </div>
         </h2>
+
+        <form method="POST" action='{{request.path}}'>
+            {% csrf_token %}
+            <label for="sortBy">Sort By:</label>
+            <select type="text" id="sortBy" name="sortBy">
+                <option value="newest">newest</option>
+                <option value="oldest">oldest</option>
+                <option value="likes">likes</option>
+            </select>
+            <input type="submit" value="Sort">
+        </form>
             
             <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
             
@@ -52,10 +63,7 @@
                         
                         </h6>
                             
-                            
-                            
                 </div>
-            
             
             {%endfor%}
           

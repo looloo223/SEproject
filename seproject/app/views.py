@@ -98,14 +98,21 @@ def forumMain(request):
     }
     return render(request, 'forumMain.html', context)
 
+#View for displaying each sections
 @login_required
 def forumView(request, forumName):
+    
     forums=forum.objects.filter(section=forumName)
     count=forums.count()
     discussions=[]
     for i in forums:
         discussions.append(i.discussion_set.all())
-    form = SearchForm()
+    if request.method =="POST":
+        sortform = SortForm(request.POST)
+        sortBy = sortform.data['sortBy']
+    else:
+        sortBy = "newest"
+    forums = sortForum(forums, sortBy)
     context={'forums':forums,
               'count':count,
               'discussions':discussions,
@@ -227,7 +234,17 @@ def searchView(request):
     
 
     return render(request, 'search.html')
-    ########################## Forum End ########################################
+
+def sortForum(forums, sortBy):
+    
+    if sortBy == "newest":
+        forums = sortNew(forums)
+    elif sortBy == "likes":
+        forums = sortLikes(forums)  
+    #no sort is needed if a oldest is selected as the query returns a list that is already oldest to newest
+    return forums
+
+######################### Forum End ########################################
 
 def contains(string, substring):
     num = 0
@@ -243,3 +260,40 @@ def contains(string, substring):
             break
     return match
 
+def sortNew(forums):
+    
+    tempArray = []
+    newArray = []
+    while len(tempArray) < len(forums):
+        newest = forums[0]
+        for item in forums:
+            if item.date_created > newest.date_created:
+                if item.date_created not in tempArray:
+                    newest =item
+        tempArray.append(newest.date_created)
+    
+    for item in tempArray:
+        for discussion in forums:
+            if item == discussion.date_created:
+                newArray.append(discussion)
+    return newArray
+
+def sortLikes(forums):
+    newArray = []
+    likeArray = []
+    for item in forums:
+        likeArray.append(item.totalLikes())
+    likeArray = removeDuplicates(likeArray)
+    likeArray.sort(reverse=True)
+    for num in likeArray:
+        for item in forums:
+            if item.totalLikes() == num:
+                newArray.append(item)
+    return newArray
+
+def removeDuplicates(array):
+    tempArray = []
+    for item in array:
+        if item not in tempArray:
+            tempArray.append(item)
+    return tempArray

@@ -27,8 +27,8 @@
 <body>
         <h2 class="jumbotron">
             There are currently {{count}} active {{section}} discussions.
-            
         </h2>
+        
             
             <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
             
@@ -39,7 +39,7 @@
                     <br>
                     <h6 class="card-title">
                         
-                        <a href='{% url 'forumDiscussion' forumName=forum.section forumTopic=forum.topic %}'><h4>{{forum.topic}}</h4></a> 
+                        <a href='{% url 'forumDiscussion' forumName=forum.section sortBy="newest" forumTopic=forum.topic %}'><h4>{{forum.topic}}</h4></a> 
                         <p> By: {{forum.name}}</p>
                         
                         </h6>

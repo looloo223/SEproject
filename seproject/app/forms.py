@@ -46,5 +46,8 @@ DiscussionFormset = inlineformset_factory(forum, Discussion, fields=('discuss',)
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=32)
 
+class SortForm(forms.Form):
+    sortBy = forms.CharField(widget=forms.Select)
+
         
 
