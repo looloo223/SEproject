@@ -28,6 +28,9 @@ def operation(request):
 def policies(request):
     return render(request, 'app/policies.html')
 
+def faq(request):
+    return render(request, 'app/faq.html')
+
 def technologies(request):
     return render(request, 'app/technologies.html')
 
