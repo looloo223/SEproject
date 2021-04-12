@@ -74,8 +74,6 @@ def forumMain(request):
 
         if form.is_valid():
 
-
-            
             searchTerm = form.cleaned_data['search']
             forums = forum.objects.all()
             discussions=[]
@@ -83,8 +81,6 @@ def forumMain(request):
             count = 0
             
             for i in forums:
-                
-                
                 
                 if contains(i.topic, searchTerm):
                     discussions.append(i)
@@ -246,8 +242,4 @@ def contains(string, substring):
             match = True
             break
     return match
-
-
-
-
 
