@@ -33,6 +33,19 @@
                 <h6 class="card-title">
                     
                     <h4>{{forum.topic}}</h4> 
+                    <p>
+                        <!---Check if forum post is made by Health/Tech Expert-->
+                        {% if forum.UserIsHealthExpert %}
+                        (Verified Health Expert) <br>
+                        {% endif %}
+
+                        {% if forum.UserIsTechExpert %}
+                        (Verified Technology Expert) <br>
+                        {% endif %}
+                        <!---->
+
+                        {{forum.name}}: <br> &nbsp; &nbsp; &nbsp; {{forum.description}}</p>
+
                     <form style="margin: 0"  action="{% url 'like_post' forum.topic %}" method="POST">
                         {% csrf_token %}
                         {% if liked %}
@@ -45,14 +58,25 @@
                       
                       
                     <div class="card-body container">
-                            <p>{{forum.name}}: {{forum.description}}</p>
+                            
                         </h6>
                     
-                        {%for discuss in discussions%}
+                        {% for discuss in discussions %}
                             
-                        {%for objs in discuss%}  
+                        {% for objs in discuss %}  
                             <hr>
                         {% if objs.forum == forum %}
+
+                        <!---Check if discussion is made by Health/Tech Expert-->
+                        {% if objs.UserIsHealthExpert %}
+                        (Verified Health Expert) <br>
+                        {% endif %}
+
+                        {% if objs.UserIsTechExpert %}
+                        (Verified Technology Expert) <br>
+                        {% endif %}
+                        <!---->
+
                         {{objs.name}}: {{objs.discuss}}
                            <br>
                         {% endif %}

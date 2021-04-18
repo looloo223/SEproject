@@ -15,6 +15,8 @@ class forum(models.Model):
     likeCount = models.IntegerField(default=0)
     dislikeCount = models.IntegerField(default=0)
     forumLikes = models.ManyToManyField(User, related_name='forum')
+    UserIsHealthExpert = models.BooleanField(default=False)
+    UserIsTechExpert = models.BooleanField(default=False)
     
     def __str__(self):
         return str(self.topic)
@@ -26,6 +28,8 @@ class Discussion(models.Model):
     forum = models.ForeignKey(forum,blank=True,on_delete=models.CASCADE)
     discuss = models.CharField(max_length=1000)
     name=models.CharField(max_length=200,default="anonymous" )
+    UserIsHealthExpert = models.BooleanField(default=False)
+    UserIsTechExpert = models.BooleanField(default=False)
  
     def __str__(self):
         return str(self.forum)

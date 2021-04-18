@@ -146,6 +146,11 @@ def addInForum(request, forumName):
             model=form.save(commit=False)
             model.name=auth.get_user(request).username
             model.section=forumName
+            for group in auth.get_user(request).groups.all():
+                if (group.name == "Health"):
+                    model.UserIsHealthExpert = True
+                elif (group.name == "Technology"):
+                    model.UserIsTechExpert = True
             model.save()
             return redirect('forumMain') #the string used to be forumHome
     context ={'form':form,
@@ -162,7 +167,13 @@ def forumDiscussion(request, forumName, forumTopic):
             model=form.save(commit=False)
             model.name=auth.get_user(request).username
             model.forum=myForum
+            for group in auth.get_user(request).groups.all():
+                if (group.name == "Health"):
+                    model.UserIsHealthExpert = True
+                elif (group.name == "Technology"):
+                    model.UserIsTechExpert = True
             model.save()
+            
         return redirect('/forumMain/')
 
     discussions=[]
